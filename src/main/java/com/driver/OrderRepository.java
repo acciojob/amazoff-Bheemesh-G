@@ -60,13 +60,10 @@ public class OrderRepository {
         return null;
     }
 
-    public DeliveryPartner getPartnerById(String partnerId)
-    {
-        if(p.containsKey(partnerId))
-        {
+    public DeliveryPartner getPartnerById(String partnerId) {
+        if (p.containsKey(partnerId)) {
             return p.get(partnerId);
         }
-
         return null;
     }
 

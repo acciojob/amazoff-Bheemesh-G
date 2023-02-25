@@ -32,9 +32,9 @@ public class OrderService {
        return  orderRepository.getOrderById(orderId);
     }
 
-    public DeliveryPartner getPartnerById(String partnerId)
-    {
-        return orderRepository.getPartnerById(partnerId);
+    public DeliveryPartner getPartnerById(String partnerId) {
+        DeliveryPartner result = orderRepository.getPartnerById(partnerId);
+        return result;
     }
 
     public int getOrderCountByPartnerId(String partnerId)
