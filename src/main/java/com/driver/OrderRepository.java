@@ -18,13 +18,8 @@ public class OrderRepository {
     public void addOrder(Order order)
     {
 
-        try{
+
             r.put(order.getId(),order);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
     }
 
     public void addPartner(String id)
