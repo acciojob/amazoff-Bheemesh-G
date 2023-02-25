@@ -30,9 +30,9 @@ public class OrderRepository {
 
     public void addOrderPartnerPair(String orderId,String partnerId)
     {
-        ass.put(orderId,partnerId);
         if(r.containsKey(orderId) && p.containsKey(partnerId))
         {
+            ass.put(orderId,partnerId);
             r.put(orderId,r.get(orderId));
             p.put(partnerId,p.get(partnerId));
             if(st.containsKey(partnerId))
@@ -46,7 +46,7 @@ public class OrderRepository {
                 temp.add(orderId);
                 st.put(partnerId,temp);
             }
-            //ass.put(orderId,1);
+
         }
     }
 
@@ -132,21 +132,29 @@ public class OrderRepository {
 
     public String getLastDeliveryTimeByPartnerId(String partnerId)
     {
-      if(st.containsKey(partnerId))
-      {
-          List<String> temp = st.get(partnerId);
-          Order lastOrder = r.get(temp.get(temp.size()-1));
-          int lastTime = lastOrder.getDeliveryTime();
-          int r = lastTime%60;
-          int q = lastTime/60;
-          String hour = String.valueOf(q);
-          String min = String.valueOf(r);
-          String timeFormat = hour+":"+min;
-
-          return timeFormat;
-      }
-
-      return "";
+        String time = "";
+        List<String> list = st.get(partnerId);
+        int deliveryTime = 0;
+        for (String s : list) {
+            Order order = r.get(s);
+            deliveryTime = Math.max(deliveryTime, order.getDeliveryTime());
+        }
+        int hour = deliveryTime / 60;
+        String sHour = "";
+        if (hour < 10) {
+            sHour = "0" + String.valueOf(hour);
+        } else {
+            sHour = String.valueOf(hour);
+        }
+        int min = deliveryTime % 60;
+        String sMin = "";
+        if (min < 10) {
+            sMin = "0" + String.valueOf(min);
+        } else {
+            sMin = String.valueOf(min);
+        }
+        time = sHour + ":" + sMin;
+        return time;
     }
 
     public void deletePartnerById(String partnerId)
