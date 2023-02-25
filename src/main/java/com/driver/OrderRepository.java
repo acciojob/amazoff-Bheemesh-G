@@ -13,7 +13,7 @@ public class OrderRepository {
   HashMap<String,Order> r = new HashMap<>();
   HashMap<String,DeliveryPartner> p = new HashMap<>();
   HashMap<String, List<String>> st = new HashMap<>();
-  HashMap<String,Integer> ass = new HashMap<>();
+  HashMap<String,String> ass = new HashMap<>();
 
     public void addOrder(Order order)
     {
@@ -30,6 +30,7 @@ public class OrderRepository {
 
     public void addOrderPartnerPair(String orderId,String partnerId)
     {
+        ass.put(orderId,partnerId);
         if(r.containsKey(orderId) && p.containsKey(partnerId))
         {
             r.put(orderId,r.get(orderId));
@@ -47,7 +48,6 @@ public class OrderRepository {
             }
             //ass.put(orderId,1);
         }
-        ass.put(orderId,1);
     }
 
     public Order getOrderById(String orderId)
