@@ -21,7 +21,7 @@ public class OrderRepository {
         r.put(order.getId(),order);
     }
 
-    public void addPatner(String id)
+    public void addPartner(String id)
     {
         DeliveryPartner deliveryPartner = new DeliveryPartner(id);
         p.put(deliveryPartner.getId(),deliveryPartner);
@@ -85,7 +85,7 @@ public class OrderRepository {
             return st.get(partnerId);
         }
 
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 
     public List<String> getAllOrders()
@@ -140,7 +140,7 @@ public class OrderRepository {
       if(st.containsKey(partnerId))
       {
           List<String> temp = st.get(partnerId);
-          Order lastOrder = r.get(temp.size()-1);
+          Order lastOrder = r.get(temp.get(temp.size()-1));
           int lastTime = lastOrder.getDeliveryTime();
           int r = lastTime%60;
           int q = lastTime/60;
