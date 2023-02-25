@@ -45,8 +45,9 @@ public class OrderRepository {
                 temp.add(orderId);
                 st.put(partnerId,temp);
             }
-            ass.put(orderId,1);
+            //ass.put(orderId,1);
         }
+        ass.put(orderId,1);
     }
 
     public Order getOrderById(String orderId)
@@ -102,14 +103,7 @@ public class OrderRepository {
 
     public int getCountOfUnassignedOrders()
     {
-        int count =0;
-        for(String i:ass.keySet())
-        {
-            if(ass.get(i)!=1)
-            {
-                count++;
-            }
-        }
+        int count = r.size()-ass.size();
 
         return count;
     }
