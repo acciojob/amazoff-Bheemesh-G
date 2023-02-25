@@ -167,22 +167,22 @@ public class OrderRepository {
 
     public void deleteOrderById(String orderId)
     {
-        for(String i:st.keySet())
+
+        //remove from orders
+        r.remove(orderId);
+        //remove from assigened hashmap
+        String parent = ass.get(orderId);
+        ass.remove(orderId);
+        List<String> list = new ArrayList<>();
+        for(String i:list)
         {
-            List<String> list = st.get(i);
-            for(String j:list)
+            if(orderId.equals(i))
             {
-                if(orderId.equals(j))
-                {
-                    //remove from deliveryboy list
-                    list.remove(j);
-                    //remove from orders
-                    r.remove(j);
-                    //remove from assigened hashmap
-                    ass.remove(j);
-                }
+                list.remove(i);
             }
         }
+        st.put(parent,list);
+
     }
 
 
