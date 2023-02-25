@@ -160,7 +160,7 @@ public class OrderRepository {
        List<String> list = st.get(partnerId);
        for(String i:list)
        {
-           ass.put(i,0);
+           ass.remove(i);
        }
 
        if(p.containsKey(partnerId))
