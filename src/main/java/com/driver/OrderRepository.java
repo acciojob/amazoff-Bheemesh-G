@@ -47,6 +47,10 @@ public class OrderRepository {
                 st.put(partnerId,temp);
             }
 
+            DeliveryPartner dp = p.get(partnerId);
+           int deliverys = dp.getNumberOfOrders();
+           dp.setNumberOfOrders(deliverys+1);
+
         }
     }
 
